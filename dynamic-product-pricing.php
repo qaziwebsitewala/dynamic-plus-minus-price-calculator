@@ -90,3 +90,87 @@ add_action('wp_ajax_dpp_add_to_cart', 'dpp_ajax_add_to_cart');
 add_action('wp_ajax_nopriv_dpp_add_to_cart', 'dpp_ajax_add_to_cart');
 
 
+// Hook to add both main menu and submenu
+add_action('admin_menu', 'dpp_add_admin_menu');
+
+function dpp_add_admin_menu() {
+    // Main menu
+    add_menu_page(
+        'Dynamic Pricing Settings',
+        'Dynamic Pricing',
+        'manage_options',
+        'dynamic-pricing-settings',
+        'dpp_render_admin_page',
+        'dashicons-cart',
+        56
+    );
+
+    // Submenu: All Products
+    add_submenu_page(
+        'dynamic-pricing-settings',
+        'All Active Products',
+        'All Products',
+        'manage_options',
+        'dpp-all-products',
+        'dpp_render_all_products_page'
+    );
+}
+
+// Main plugin settings page
+function dpp_render_admin_page() {
+    ?>
+    <div class="wrap">
+        <h1><span class="dashicons dashicons-cart" style="vertical-align: middle;"></span> Dynamic Pricing with Plus & Minus</h1>
+        <p>This plugin enables a dynamic plus/minus pricing widget for your WooCommerce products.</p>
+        <p>Use the shortcode below to add the widget:</p>
+        <code>[dynamic_product_pricing product_id="123"]</code>
+        <p>Need help finding your product ID? <a href="admin.php?page=dpp-all-products">View all active products here</a>.</p>
+    </div>
+    <?php
+}
+
+// Submenu page: Display all active products
+function dpp_render_all_products_page() {
+    if (!class_exists('WooCommerce')) {
+        echo '<div class="notice notice-error"><p>WooCommerce is not active. Please install and activate WooCommerce.</p></div>';
+        return;
+    }
+
+    $args = array(
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+    );
+
+    $products = get_posts($args);
+    ?>
+    <div class="wrap">
+        <h1><span class="dashicons dashicons-products" style="vertical-align: middle;"></span> All Active Products</h1>
+        <p>Here is a list of all published WooCommerce products with their corresponding IDs:</p>
+        <table class="widefat striped">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($products) {
+                    foreach ($products as $product) {
+                        echo '<tr>';
+                        echo '<td>' . esc_html($product->ID) . '</td>';
+                        echo '<td>' . esc_html($product->post_title) . '</td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="2">No active products found.</td></tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <?php
+}
