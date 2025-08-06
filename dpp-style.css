@@ -1,0 +1,128 @@
+.dpp-widget {
+    padding: 15px;
+   // max-width: 300px;
+    font-family: "Playfair Display", Sans-serif;
+}
+.dpp-price {
+    font-size: 24px;
+    margin-bottom: 20px;
+	color:#2F4F4F;
+	margin-top:-20px;
+}
+
+span.dpp-total
+ {
+    color: #D4AF37;
+}
+
+.dpp-qty-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.dpp-qty-wrap button {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    cursor: pointer;
+    border-color: #2F4F4F;
+    color: #fff;
+    background: #2F4F4F;
+    line-height: 0;
+    padding: 12px;
+}
+.dpp-qty-wrap button:hover,
+.dpp-qty-wrap button:focus
+{
+	background:#D8F3DC;
+	border-color:#D8F3DC;
+	color: #2F4F4F;
+}
+
+.dpp-qty-wrap input {
+    width: 60px !important;
+    text-align: center;
+    background: none;
+    border: none !important;
+    color: #2F4F4F;
+    font-size: 28px;
+    font-family: "Playfair Display", Sans-serif;
+    padding: 10px !important;
+}
+
+.dpp-add-to-cart {
+    background: #D8F3DC;
+    color: #1B511A !important;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: "inter", Sans-serif;
+    border-radius: 8pc;
+	height:60px;
+}
+button.dpp-add-to-cart{
+ white-space: nowrap;
+  color: #2F4F4F;
+  background-image: url(/wp-content/uploads/2025/07/nav-bg-fill-blue.png);
+  background-repeat: repeat-x;
+  background-position: 0 -100%;
+  transition: 1.5s ease;	
+}
+button.dpp-add-to-cart:hover{
+  background-position: 500% 100%;
+  color: #fff !important;
+  border-color: #2F4F4F !important;
+}
+
+button.dpp-add-to-cart:focus{
+	background-color:#D8F3DC !important;
+}
+
+[type=button]:focus, [type=button]:hover, [type=submit]:focus, [type=submit]:hover, button:focus, button:hover{
+	background-color:#D8F3DC !important;
+}
+
+
+.dpp-add-to-cart {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s ease;
+}
+
+.dpp-add-to-cart .dpp-icon {
+  transition: opacity 0.3s ease;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.dpp-message {
+    color: #2b9d2b;
+    font-size: 14px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.button-wrap {
+    display: flex;
+    gap: 20px;
+}
+
+@media screen and (max-width: 786px){
+	.button-wrap{
+		display:block;
+	}
+}
